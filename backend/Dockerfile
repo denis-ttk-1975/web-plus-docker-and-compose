@@ -4,7 +4,7 @@ FROM node:16-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 
-RUN npm ci
+RUN npm ci --omit=dev
 COPY . .
 RUN npm run build
 
@@ -16,7 +16,7 @@ COPY package*.json ./
 RUN npm ci --omit=dev && npm i pm2 -g
 
 COPY --from=builder /app/dist ./dist
-COPY ecosystem.config.js .
+COPY --from=builder /app/ecosystem.config.js .
 
 EXPOSE 3000
 
