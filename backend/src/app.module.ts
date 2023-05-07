@@ -19,11 +19,11 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: '172.17.0.2',
       port: 5432,
-      username: 'student',
-      password: 'student',
-      database: 'kupipodariday',
+      username: 'selectel' || 'student',
+      password: 'selectel' || 'student',
+      database: 'selectel' || 'kupipodariday',
       entities: [Wishlist, Wish, User, Offer],
       synchronize: true,
     }),
