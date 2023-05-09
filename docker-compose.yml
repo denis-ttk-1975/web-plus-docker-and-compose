@@ -6,16 +6,11 @@ services:
     build: ./backend
     networks:
       - backend
-    #    env_file:
-    #      - .env
+    env_file:
+      - .env
     restart: unless-stopped
     ports:
       - '4000:3000'
-    environment:
-      - POSTGRES_USER=student
-      - POSTGRES_PASSWORD=student
-      - POSTGRES_DB=kupipodariday
-    #      - PGDATA=/var/lib/postgresql/data/pgdata
     depends_on:
       - database
 
@@ -29,11 +24,6 @@ services:
     restart: unless-stopped
     ports:
       - 5432:5432
-    environment:
-      - POSTGRES_USER=student
-      - POSTGRES_PASSWORD=student
-      - POSTGRES_DB=kupipodariday
-    #      - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - pg_data:/var/lib/postgresql/data/pgdata
 
