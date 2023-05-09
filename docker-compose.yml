@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  database:
+  db:
     container_name: 'db'
     image: postgres:12-alpine
     networks:
