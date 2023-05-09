@@ -15,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       /* Указываем, что токен будет передаваться в заголовке Authorization в формате Bearer <token> */
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       /* Получаем секрет для подписи JWT токенов из конфигурации */
-      secretOrKey: 'some-secret-key',
+      secretOrKey: process.env.JWT_SECRET,
     });
   }
 
