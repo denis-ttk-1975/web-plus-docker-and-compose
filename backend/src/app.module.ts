@@ -114,6 +114,7 @@ import database from './config/database';
 //   providers: [],
 // })
 
+console.log(database);
 @Module({
   imports: [
     ConfigModule.forRoot({ load: [database] }),
