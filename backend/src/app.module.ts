@@ -92,16 +92,16 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   host: 'db',
-    //   port: 5432,
-    //   username: 'student',
-    //   password: 'student',
-    //   database: 'kupipodariday',
-    //   entities: [Wishlist, Wish, User, Offer],
-    //   synchronize: true,
-    // }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'db',
+      port: 5432,
+      username: 'postgres',
+      password: 'password',
+      database: 'kupipodariday',
+      entities: [Wishlist, Wish, User, Offer],
+      synchronize: true,
+    }),
     UsersModule,
     WishesModule,
     WishlistsModule,
