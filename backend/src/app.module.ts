@@ -38,17 +38,43 @@ import { AuthModule } from './auth/auth.module';
 //   providers: [],
 // })
 
+// @Module({
+//   imports: [
+//     TypeOrmModule.forRootAsync({
+//       imports: [ConfigModule],
+//       useFactory: (configService: ConfigService) => ({
+//         type: 'postgres',
+//         host: configService.get('POSTGRES_HOST') || 'db',
+//         port: 5432,
+//         username: configService.get('POSTGRES_USER') || 'student',
+//         password: configService.get('POSTGRES_PASSWORD') || 'student',
+//         database: configService.get('POSTGRES_DB') || 'kupipodariday',
+//         entities: [Wishlist, Wish, User, Offer],
+//         synchronize: true,
+//       }),
+//       inject: [ConfigService],
+//     }),
+//     UsersModule,
+//     WishesModule,
+//     WishlistsModule,
+//     OffersModule,
+//     AuthModule,
+//   ],
+//   controllers: [AppController],
+//   providers: [],
+// })
+
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        host: configService.get('POSTGRES_HOST') || 'db',
+        host: 'db',
         port: 5432,
-        username: configService.get('POSTGRES_USER') || 'student',
-        password: configService.get('POSTGRES_PASSWORD') || 'student',
-        database: configService.get('POSTGRES_DB') || 'kupipodariday',
+        username: 'student',
+        password: 'student',
+        database: 'kupipodariday',
         entities: [Wishlist, Wish, User, Offer],
         synchronize: true,
       }),
