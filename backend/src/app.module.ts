@@ -15,6 +15,8 @@ import { User } from './users/entities/user.entity';
 import { Offer } from './offers/entities/offer.entity';
 import { AuthModule } from './auth/auth.module';
 
+import database from './config/database';
+
 // @Module({
 //   imports: [
 //     ConfigModule.forRoot({ envFilePath: './../../.env', isGlobal: true }),
@@ -90,17 +92,36 @@ import { AuthModule } from './auth/auth.module';
 //   providers: [],
 // })
 
+// @Module({
+//   imports: [
+//     TypeOrmModule.forRoot({
+//       type: 'postgres',
+//       host: 'db',
+//       port: 5432,
+//       username: 'postgres',
+//       password: 'password',
+//       database: 'kupipodariday',
+//       entities: [Wishlist, Wish, User, Offer],
+//       synchronize: true,
+//     }),
+//     UsersModule,
+//     WishesModule,
+//     WishlistsModule,
+//     OffersModule,
+//     AuthModule,
+//   ],
+//   controllers: [AppController],
+//   providers: [],
+// })
+
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'db',
-      port: 5432,
-      username: 'postgres',
-      password: 'password',
-      database: 'kupipodariday',
-      entities: [Wishlist, Wish, User, Offer],
-      synchronize: true,
+    ConfigModule.forRoot({ load: [database] }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) =>
+        configService.get('database'),
+      inject: [ConfigService],
     }),
     UsersModule,
     WishesModule,
