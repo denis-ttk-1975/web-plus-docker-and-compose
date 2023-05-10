@@ -15,7 +15,7 @@ import { User } from './users/entities/user.entity';
 import { Offer } from './offers/entities/offer.entity';
 import { AuthModule } from './auth/auth.module';
 
-import database from './config/database';
+// import database from './config/database';
 
 // @Module({
 //   imports: [
@@ -39,7 +39,6 @@ import database from './config/database';
 //   controllers: [AppController],
 //   providers: [],
 // })
-
 // @Module({
 //   imports: [
 //     TypeOrmModule.forRootAsync({
@@ -65,7 +64,6 @@ import database from './config/database';
 //   controllers: [AppController],
 //   providers: [],
 // })
-
 // @Module({
 //   imports: [
 //     TypeOrmModule.forRootAsync({
@@ -91,7 +89,6 @@ import database from './config/database';
 //   controllers: [AppController],
 //   providers: [],
 // })
-
 // @Module({
 //   imports: [
 //     TypeOrmModule.forRoot({
@@ -113,15 +110,39 @@ import database from './config/database';
 //   controllers: [AppController],
 //   providers: [],
 // })
+// @Module({
+//   imports: [
+//     ConfigModule.forRoot({ load: [database] }),
+//     TypeOrmModule.forRootAsync({
+//       imports: [ConfigModule],
+//       useFactory: (configService: ConfigService) =>
+//         configService.get('database'),
+//       inject: [ConfigService],
+//     }),
+//     UsersModule,
+//     WishesModule,
+//     WishlistsModule,
+//     OffersModule,
+//     AuthModule,
+//   ],
+//   controllers: [AppController],
+//   providers: [],
+// })
 
-console.log(database);
 @Module({
   imports: [
-    ConfigModule.forRoot({ load: [database] }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) =>
-        configService.get('database'),
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('POSTGRES_HOST') || 'db',
+        port: 5432,
+        username: configService.get('POSTGRES_USER') || 'postgres',
+        password: configService.get('POSTGRES_PASSWORD') || 'password',
+        database: configService.get('POSTGRES_DB') || 'kupipodariday',
+        entities: [Wishlist, Wish, User, Offer],
+        synchronize: true,
+      }),
       inject: [ConfigService],
     }),
     UsersModule,
