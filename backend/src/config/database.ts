@@ -11,10 +11,10 @@ dotenv.config({ path: './../../../.env' });
 export default () => ({
   database: {
     type: 'postgres',
-    host: process.env.POSTGRES_HOST,
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
+    host: process.env.POSTGRES_HOST || 'db',
+    username: process.env.POSTGRES_USER || 'student',
+    password: process.env.POSTGRES_PASSWORD || 'student',
+    database: process.env.POSTGRES_DB || 'kupipodariday',
     entities: [User, Wish, Wishlist, Offer],
     synchronize: true,
   },
