@@ -130,27 +130,27 @@ import { AuthModule } from './auth/auth.module';
 // })
 
 @Module({
-  // imports: [
-  //   TypeOrmModule.forRootAsync({
-  //     imports: [ConfigModule],
-  //     useFactory: (configService: ConfigService) => ({
-  //       type: 'postgres',
-  //       host: configService.get('POSTGRES_HOST') || 'db',
-  //       port: 5432,
-  //       username: configService.get('POSTGRES_USER') || 'postgres',
-  //       password: configService.get('POSTGRES_PASSWORD') || 'password',
-  //       database: configService.get('POSTGRES_DB') || 'kupipodariday',
-  //       entities: [Wishlist, Wish, User, Offer],
-  //       synchronize: true,
-  //     }),
-  //     inject: [ConfigService],
-  //   }),
-  //   UsersModule,
-  //   WishesModule,
-  //   WishlistsModule,
-  //   OffersModule,
-  //   AuthModule,
-  // ],
+  imports: [
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('POSTGRES_HOST') || 'db',
+        port: 5432,
+        username: configService.get('POSTGRES_USER') || 'postgres',
+        password: configService.get('POSTGRES_PASSWORD') || 'password',
+        database: configService.get('POSTGRES_DB') || 'kupipodariday',
+        entities: [Wishlist, Wish, User, Offer],
+        synchronize: true,
+      }),
+      inject: [ConfigService],
+    }),
+    UsersModule,
+    WishesModule,
+    WishlistsModule,
+    OffersModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [],
 })
