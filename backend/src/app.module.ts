@@ -64,21 +64,43 @@ import { AuthModule } from './auth/auth.module';
 //   providers: [],
 // })
 
+// @Module({
+//   imports: [
+//     TypeOrmModule.forRootAsync({
+//       imports: [ConfigModule],
+//       useFactory: (configService: ConfigService) => ({
+//         type: 'postgres',
+//         host: 'db',
+//         port: 5432,
+//         username: 'student',
+//         password: 'student',
+//         database: 'kupipodariday',
+//         entities: [Wishlist, Wish, User, Offer],
+//         synchronize: true,
+//       }),
+//       inject: [ConfigService],
+//     }),
+//     UsersModule,
+//     WishesModule,
+//     WishlistsModule,
+//     OffersModule,
+//     AuthModule,
+//   ],
+//   controllers: [AppController],
+//   providers: [],
+// })
+
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: 'db',
-        port: 5432,
-        username: 'student',
-        password: 'student',
-        database: 'kupipodariday',
-        entities: [Wishlist, Wish, User, Offer],
-        synchronize: true,
-      }),
-      inject: [ConfigService],
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'db',
+      port: 5432,
+      username: 'student',
+      password: 'student',
+      database: 'kupipodariday',
+      entities: [Wishlist, Wish, User, Offer],
+      synchronize: true,
     }),
     UsersModule,
     WishesModule,
