@@ -5,12 +5,12 @@ import cors from 'cors';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(
-    cors({
-      credentials: true,
-      origin: '*',
-    }),
-  );
+  // app.use(
+  //   cors({
+  //     credentials: true,
+  //     origin: '*',
+  //   }),
+  // );
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
